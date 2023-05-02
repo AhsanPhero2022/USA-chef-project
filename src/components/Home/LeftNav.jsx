@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import first from "../../assets/images (1).jpg";
 import second from "../../assets/images.jpg";
-import third from "../../assets/images (2).jpg";
+import third from "../../assets/images (4).jpg";
 import fourth from "../../assets/images (3).jpg";
 
 const LeftNav = () => {
