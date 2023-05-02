@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Banne = () => {
   return (
@@ -15,26 +15,22 @@ const Banne = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto ">
-            <Nav.Link>
-              <Link className="text-decoration-none" to="/">
-                Home
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link className="text-decoration-none" to="/blog">
-                Blog
-              </Link>
-            </Nav.Link>
+            <NavLink className="ms-5 text-decoration-none" to="/">
+              Home
+            </NavLink>
+            <NavLink className="ms-5 text-decoration-none" to="/blog">
+              Blog
+            </NavLink>
           </Nav>
           <div>
             <img className="btn rounded-circle" src="" alt="" />
 
-            <Link>
+            <NavLink to="/login">
               <button className="btn btn-info">Login</button>
-            </Link>
-            <Link to="/register">
+            </NavLink>
+            <NavLink to="/register">
               <button className="ms-4 btn btn-info">Register</button>
-            </Link>
+            </NavLink>
           </div>
         </Navbar.Collapse>
       </Container>

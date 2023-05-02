@@ -1,18 +1,21 @@
 import React from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import register from "../../assets/blog/register.png";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <>
+    <Container>
       <Row>
         <Col lg={6}>
-          <div className="text-center mt-5 ">
-            <img className="mt-5 img-fluid p-5" src={register} alt="" />
+          <div className=" text-center  mt-5 ">
+            <h2 className="text-success p-5 mt-5 ">Create Your Own Account</h2>
+            <img className=" img-fluid p-5" src={register} alt="" />
           </div>
         </Col>
         <Col lg={6}>
-          <Form className="w-75 my-3 border p-3 rounded bg-info bg-opacity-50">
+          <Form className="mt-5 shadow-lg w-75   border p-3 rounded bg-info bg-opacity-50">
+            <h3>Register</h3>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Your Name</Form.Label>
               <Form.Control
@@ -54,13 +57,16 @@ const Register = () => {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className="w-100 mb-2" variant="info" type="submit">
               Submit
             </Button>
+            <p>
+              Have an Account? <Link to="/login">Login</Link>
+            </p>
           </Form>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 
