@@ -7,7 +7,7 @@ import { Col, Container, Row } from "react-bootstrap";
 const ExtraSection = () => {
   return (
     <>
-      <h2 className="text-center my-5 text-white p-4 bg-info ">
+      <h2 className="text-center my-5 text-white p-4 bg-info container rounded">
         Best Liked US People Food is Here
       </h2>
       <Container className="mx-auto m-5 border p-5 rounded bg-info bg-opacity-50">

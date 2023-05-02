@@ -4,19 +4,12 @@ import BannerCard from "./BannerCard";
 
 const Banner = () => {
   const [chefs, setChef] = useState([]);
-  const [see, setSee] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/allData")
       .then((response) => response.json())
       .then((data) => setChef(data));
   }, []);
-
-  const handleClick = () => {
-    setSee(!see);
-  };
-
-  const totalChef = see ? chefs : chefs.slice(0, 3);
 
   return (
     <div>
@@ -46,16 +39,12 @@ const Banner = () => {
         <h2 className="text-center text-white my-4 bg-info rounded p-3">
           The Famous Chef is Here
         </h2>
-        {totalChef.map((chef) => (
+        {chefs.map((chef) => (
           <BannerCard chef={chef}></BannerCard>
         ))}
       </div>
 
-      <div className="text-center m-3 mt-5 ">
-        <button onClick={() => handleClick()} className="btn btn-info ">
-          See All Chef
-        </button>
-      </div>
+      <div className="text-center m-3 mt-5 "></div>
     </div>
   );
 };
