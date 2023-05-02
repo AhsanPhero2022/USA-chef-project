@@ -21,7 +21,7 @@ const Banner = () => {
   return (
     <div>
       <div>
-        <h3 className="text-info mt-4">Most Popular chef Food from USA</h3>
+        <h3 className="text-info mt-4 ">Most Popular chef Food from USA</h3>
       </div>
       <div
         className=" "
@@ -42,14 +42,17 @@ const Banner = () => {
         </p>
       </div>
 
-      <div className="bg-cyan-200">
+      <div className="   gap-4 ">
+        <h2 className="text-center text-white my-4 bg-info rounded p-3">
+          The Famous Chef is Here
+        </h2>
         {totalChef.map((chef) => (
           <BannerCard chef={chef}></BannerCard>
         ))}
       </div>
 
-      <div className="text-center m-3 mt-5">
-        <button onClick={() => handleClick()} className="btn btn-success ">
+      <div className="text-center m-3 mt-5 ">
+        <button onClick={() => handleClick()} className="btn btn-info ">
           See All Chef
         </button>
       </div>
