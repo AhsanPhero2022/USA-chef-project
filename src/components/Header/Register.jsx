@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import register from "../../assets/blog/register.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password, photo);
+    createUser(email, password)
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <Container>
       <Row>
@@ -14,7 +34,10 @@ const Register = () => {
           </div>
         </Col>
         <Col lg={6}>
-          <Form className="mt-5 shadow-lg w-75   border p-3 rounded bg-info bg-opacity-50">
+          <Form
+            onSubmit={handleRegister}
+            className="mt-5 shadow-lg w-75   border p-3 rounded bg-info bg-opacity-50"
+          >
             <h3>Register</h3>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Your Name</Form.Label>
@@ -24,13 +47,13 @@ const Register = () => {
                 placeholder="Enter Your Name"
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              name="photo"
-              controlId="formBasicEmail"
-            >
+            <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Photo URL</Form.Label>
-              <Form.Control type="text" placeholder="Enter Photo URL" />
+              <Form.Control
+                type="text"
+                name="photo"
+                placeholder="Enter Photo URL"
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

@@ -25,12 +25,12 @@ const Banne = () => {
           <div>
             <img className="btn rounded-circle" src="" alt="" />
 
-            <NavLink to="/login">
+            <Link to="/login">
               <button className="btn btn-info">Login</button>
-            </NavLink>
-            <NavLink to="/register">
+            </Link>
+            <Link to="/register">
               <button className="ms-4 btn btn-info">Register</button>
-            </NavLink>
+            </Link>
           </div>
         </Navbar.Collapse>
       </Container>

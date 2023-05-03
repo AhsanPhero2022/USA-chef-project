@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Col, Row, Form, Container } from "react-bootstrap";
 import img from "../../assets/blog/login.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <Container className="py-5 mt-5 ">
       <Row>
@@ -16,7 +35,10 @@ const Login = () => {
           </div>
         </Col>
         <Col lg={6}>
-          <Form className="mt-5 shadow-lg w-75  border p-3 rounded bg-info bg-opacity-50">
+          <Form
+            onSubmit={handleLogin}
+            className="mt-5 shadow-lg w-75  border p-3 rounded bg-info bg-opacity-50"
+          >
             <h3>Login</h3>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -35,12 +57,14 @@ const Login = () => {
                 placeholder="Password"
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            <Button className="w-100 mb-2" variant="info" type="submit">
+            <Form.Group
+              className="mb-3"
+              controlId="formBasicCheckbox"
+            ></Form.Group>
+            <Button className="w-100 my-4" variant="info" type="submit">
               Login
             </Button>
+
             <p>
               Don't have account? <Link to="/register">Register</Link>
             </p>
