@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Col, Row, Form, Container } from "react-bootstrap";
 import img from "../../assets/blog/login.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleLogin } = useContext(AuthContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -14,6 +14,17 @@ const Login = () => {
     const password = form.password.value;
 
     signIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
@@ -68,11 +79,13 @@ const Login = () => {
             <p>
               Don't have account? <Link to="/register">Register</Link>
             </p>
-            <div className="mt-3">
-              <button className="btn btn-warning">Google Sign-in</button>
-              <button className="btn btn-warning ms-3">GitHub Sign-in</button>
-            </div>
           </Form>
+          <div className="mt-3">
+            <button onClick={handleGoogleLogin} className="btn btn-warning">
+              Google Sign-in
+            </button>
+            <button className="btn btn-warning ms-3">GitHub Sign-in</button>
+          </div>
         </Col>
       </Row>
     </Container>

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import register from "../../assets/blog/register.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
+  const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
 
   const handleRegister = (event) => {
@@ -14,7 +15,18 @@ const Register = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password, photo);
+
+    setError("");
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setError("please add at least two uppercase");
+      return;
+    } else if (!/(?=.*)/.test(password)) {
+      setError("Please add a special character");
+      return;
+    } else if (password.length < 6) {
+      setError("Password at least 6 character long");
+    }
+
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
@@ -83,6 +95,7 @@ const Register = () => {
             <Button className="w-100 mb-2" variant="info" type="submit">
               Submit
             </Button>
+            <h6 className="text-danger ">{error}</h6>
             <p>
               Have an Account? <Link to="/login">Login</Link>
             </p>

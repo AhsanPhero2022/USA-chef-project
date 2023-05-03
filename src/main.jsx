@@ -10,6 +10,7 @@ import ErrorPage from "./components/ErrorPage/Error.jsx";
 import Register from "./components/Header/Register";
 import Login from "./components/Header/Login.jsx";
 import AuthProviders from "./providers/AuthProviders.jsx";
+import ViewRecipe from "./components/Home/ViewRecipe";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,12 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/viewrecipe/:id",
+        element: <ViewRecipe></ViewRecipe>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/singleData/${params.id}`),
       },
     ],
   },

@@ -1,17 +1,8 @@
 import React from "react";
-
-import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const BannerCard = ({ chef }) => {
-  const {
-    id,
-    imageUrl,
-    name,
-    description,
-    likes,
-    experienceYears,
-    NumbersRecipes,
-  } = chef;
+  const { id, imageUrl, name, likes, experienceYears, NumbersRecipes } = chef;
   return (
     <div className="m-4">
       <div className=" mx-5 my-12  w-full card  h-96 bg-base-100 shadow-xl">
@@ -20,7 +11,11 @@ const BannerCard = ({ chef }) => {
         </figure>
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
-          <button className="btn btn-info    my-3">View Recipes Button</button>
+          <Link to={`/viewrecipe/${id}`}>
+            <button className="btn btn-info    my-3">
+              View Recipes Button
+            </button>
+          </Link>
           <div className="card-actions justify-st mt-2">
             <button className="btn btn-outline btn-success ">
               <span>Years of Experience: </span>
