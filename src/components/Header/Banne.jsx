@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Banne = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -13,7 +14,8 @@ const Banne = () => {
       .then()
       .catch((error) => Console.log(error));
   };
-
+  console.log(user);
+  const tooltip = <Tooltip id="tooltip">{user && user.displayName}</Tooltip>;
   return (
     <Navbar bg="light" expand="lg" className="mb-2">
       <Container>
@@ -34,12 +36,17 @@ const Banne = () => {
             </NavLink>
           </Nav>
           <div>
+            <Link className="text-success text-decoration-none me-2">
+              {user ? user.displayName : ""}
+            </Link>
             {user ? (
-              <img
-                className=" rounded-circle p-5 w-50"
-                src={user.photoURL}
-                alt=""
-              />
+              <OverlayTrigger placement="left" overlay={tooltip}>
+                <img
+                  className="rounded-circle me-2 w-25"
+                  src={user.photoURL}
+                  alt=""
+                />
+              </OverlayTrigger>
             ) : (
               <Link to="/login">
                 <button className="btn btn-info">Login</button>
@@ -47,7 +54,7 @@ const Banne = () => {
             )}
             {user ? (
               <Link>
-                <button onClick={handleLogout} className="btn btn-info">
+                <button onClick={handleLogout} className="btn btn-info ">
                   Logout
                 </button>
               </Link>

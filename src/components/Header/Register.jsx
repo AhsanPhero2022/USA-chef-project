@@ -3,6 +3,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import register from "../../assets/blog/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -27,12 +28,26 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
-        profileUpdate(name, photo, createUser);
+        profileUpdate(name, photo, createdUser);
         console.log(createdUser);
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        setError("already exist gmail");
+      });
+  };
+
+  const profileUpdate = (name, photo, createdUser) => {
+    updateProfile(createdUser, {
+      displayName: name,
+      photoURL: photo,
+    })
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+      })
+      .catch((error) => {
+        setError("noting");
       });
   };
 

@@ -67,7 +67,7 @@ const Banner = () => {
         ) : (
           <div>
             {allChef.map((chef) => (
-              <BannerCard chef={chef}></BannerCard>
+              <BannerCard key={chef.id} chef={chef}></BannerCard>
             ))}
           </div>
         )}

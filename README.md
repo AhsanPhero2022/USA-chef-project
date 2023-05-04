@@ -30,6 +30,12 @@ some conditional message ('toast')
 mostly used arrow function.
 ```
 
+## user Friendly
+
+```
+This web site is user friendly. user can be perfectly signup and signin with multiple method.
+```
+
 ## Site Link
 
 ```

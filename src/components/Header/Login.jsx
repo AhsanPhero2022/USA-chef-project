@@ -33,7 +33,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error);
@@ -44,7 +44,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error);
