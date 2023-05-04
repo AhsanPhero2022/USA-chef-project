@@ -27,6 +27,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
+        profileUpdate(name, photo, createUser);
         console.log(createdUser);
         navigate("/");
       })
@@ -38,6 +39,7 @@ const Register = () => {
   const handleAccepted = (event) => {
     setAccepted(event.target.checked);
   };
+
   return (
     <Container>
       <Row>

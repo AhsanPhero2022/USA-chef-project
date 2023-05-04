@@ -4,7 +4,7 @@ import BannerCard from "./BannerCard";
 import { Spinner } from "react-bootstrap";
 
 const Banner = () => {
-  const [chefs, setChef] = useState([]);
+  const [allChef, setChef] = useState([]);
   const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +14,7 @@ const Banner = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      fetch("http://localhost:5000/allData")
+      fetch("https://assignment-10-server-ahsanphero2022.vercel.app/allData")
         .then((response) => response.json())
         .then((data) => setChef(data));
       setLoading(false);
@@ -66,7 +66,7 @@ const Banner = () => {
           </Spinner>
         ) : (
           <div>
-            {chefs.map((chef) => (
+            {allChef.map((chef) => (
               <BannerCard chef={chef}></BannerCard>
             ))}
           </div>

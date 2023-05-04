@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
@@ -35,7 +34,17 @@ const Banne = () => {
             </NavLink>
           </Nav>
           <div>
-            <img className="btn rounded-circle" src="" alt="" />
+            {user ? (
+              <img
+                className=" rounded-circle p-5 w-50"
+                src={user.photoURL}
+                alt=""
+              />
+            ) : (
+              <Link to="/login">
+                <button className="btn btn-info">Login</button>
+              </Link>
+            )}
             {user ? (
               <Link>
                 <button onClick={handleLogout} className="btn btn-info">
@@ -43,9 +52,7 @@ const Banne = () => {
                 </button>
               </Link>
             ) : (
-              <Link to="/login">
-                <button className="btn btn-info">Login</button>
-              </Link>
+              ""
             )}
             {!user && (
               <Link to="/register">

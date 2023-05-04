@@ -5,6 +5,12 @@ ReactJs is a JavaScript Library. It's very first and good productional library f
 
 ```
 
+## Lazy Loader
+
+```
+This project used lazy loader for user friendly.
+```
+
 ## Uses
 
 ```
@@ -20,12 +26,12 @@ Design base Random
 # Hook 'React Hook'
 some conditional message ('toast')
 
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+# returns 'function'
+mostly used arrow function.
 ```
 
 ## Site Link
 
 ```
-Live Site Link: ''
+Live Site Link: 'https://assignment-10-d44c0.web.app/'
 ```

@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const { signIn, googleLogin, gitHubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,16 +24,20 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log(error);
+        setError("Incorrect Password");
       });
   };
 
   const handleGitLogin = () => {
-    gitHubLogin().then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-      navigate("/");
-    });
+    gitHubLogin()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error);
+      });
   };
   const handleGoogleLogin = () => {
     googleLogin()
@@ -42,7 +47,7 @@ const Login = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        setError(error);
       });
   };
 
@@ -87,7 +92,7 @@ const Login = () => {
             <Button className="w-100 my-4" variant="info" type="submit">
               Login
             </Button>
-
+            <p className="text-danger">{error}</p>
             <p>
               Don't have account? <Link to="/register">Register</Link>
             </p>
