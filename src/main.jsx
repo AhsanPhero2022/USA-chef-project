@@ -11,6 +11,8 @@ import Register from "./components/Header/Register";
 import Login from "./components/Header/Login.jsx";
 import AuthProviders from "./providers/AuthProviders.jsx";
 import ViewRecipe from "./components/Home/ViewRecipe";
+import PrivateRoute from "./components/ProvateRoute/PrivateRoute.jsx";
+import Terms from "./components/Header/Terms.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,9 +38,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/viewrecipe/:id",
-        element: <ViewRecipe></ViewRecipe>,
+        element: (
+          <PrivateRoute>
+            <ViewRecipe></ViewRecipe>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/singleData/${params.id}`),
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>,
       },
     ],
   },

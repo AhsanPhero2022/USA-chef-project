@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import register from "../../assets/blog/register.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
   const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [accepted, setAccepted] = useState(false);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -31,10 +33,15 @@ const Register = () => {
       .then((result) => {
         const createdUser = result.user;
         console.log(createdUser);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleAccepted = (event) => {
+    setAccepted(event.target.checked);
   };
   return (
     <Container>
@@ -90,9 +97,25 @@ const Register = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
+              <Form.Check
+                onClick={handleAccepted}
+                type="checkbox"
+                label={
+                  <>
+                    Accept{" "}
+                    <Link className="text-decoration-none" to="/terms">
+                      Terms and Condition
+                    </Link>
+                  </>
+                }
+              />
             </Form.Group>
-            <Button className="w-100 mb-2" variant="info" type="submit">
+            <Button
+              disabled={!accepted}
+              className="w-100 mb-2"
+              variant="info"
+              type="submit"
+            >
               Submit
             </Button>
             <h6 className="text-danger ">{error}</h6>

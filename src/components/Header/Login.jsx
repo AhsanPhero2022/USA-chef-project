@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Button, Col, Row, Form, Container } from "react-bootstrap";
 import img from "../../assets/blog/login.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
   const { signIn, googleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -17,6 +20,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -28,6 +32,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
