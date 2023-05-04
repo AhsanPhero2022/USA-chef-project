@@ -4,6 +4,11 @@ import BannerCard from "./BannerCard";
 
 const Banner = () => {
   const [chefs, setChef] = useState([]);
+  const [likeCount, setLikeCount] = useState(0);
+
+  const handleLikeClick = () => {
+    setLikeCount(likeCount + 1);
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/allData")
@@ -14,17 +19,17 @@ const Banner = () => {
   return (
     <div>
       <div>
-        <h3 className="text-info mt-4 ">Most Popular chef Food from USA</h3>
+        <h3 className="text-info my-4 ">Most Popular chef Food from USA</h3>
       </div>
       <div
         className=" "
         style={{ backgroundImage: `url(${bannerImg})`, height: 600 }}
       >
-        <h5 className="text-light text-center m-5 p-5">
+        <h4 className="text-light  pt-5 px-5">
           Todays guests love to feel like insiders
-        </h5>
+        </h4>
 
-        <p className="text-light p-5 ">
+        <p className="text-light  px-5 ">
           Personal interaction between cooks and diners is the norm at Ko bar,
           David Changs ante room to the Michelin-starred Momofuku Ko. Both at
           the counter and at the tables, dialogue is encouraged. No one decides
@@ -33,6 +38,12 @@ const Banner = () => {
           for.” The cooks drop the dishes in front of the diners for immediate
           feedback.
         </p>
+        <button
+          onClick={handleLikeClick}
+          className="btn btn-warning ms-5 mt-4 px-3 "
+        >
+          <h3>Like It: {likeCount}</h3>
+        </button>
       </div>
 
       <div className="   gap-4 ">
