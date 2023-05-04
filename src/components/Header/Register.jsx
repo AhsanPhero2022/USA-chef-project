@@ -3,6 +3,8 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import register from "../../assets/blog/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -19,15 +21,6 @@ const Register = () => {
     const password = form.password.value;
 
     setError("");
-    if (!/(?=.*[A-Z])/.test(password)) {
-      setError("please add at least two uppercase");
-      return;
-    } else if (!/(?=.*)/.test(password)) {
-      setError("Please add a special character");
-      return;
-    } else if (password.length < 6) {
-      setError("Password at least 6 character long");
-    }
 
     createUser(email, password)
       .then((result) => {
@@ -36,7 +29,7 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -125,6 +118,7 @@ const Register = () => {
           </Form>
         </Col>
       </Row>
+      <ToastContainer></ToastContainer>
     </Container>
   );
 };

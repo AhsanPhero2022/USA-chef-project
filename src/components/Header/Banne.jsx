@@ -30,10 +30,12 @@ const Banne = () => {
             <NavLink className="ms-5 text-decoration-none" to="/blog">
               Blog
             </NavLink>
+            <NavLink className="ms-5 text-decoration-none" to="/terms">
+              Terms
+            </NavLink>
           </Nav>
           <div>
             <img className="btn rounded-circle" src="" alt="" />
-
             {user ? (
               <Link>
                 <button onClick={handleLogout} className="btn btn-info">
@@ -45,9 +47,11 @@ const Banne = () => {
                 <button className="btn btn-info">Login</button>
               </Link>
             )}
-            <Link to="/register">
-              <button className="ms-4 btn btn-info">Register</button>
-            </Link>
+            {!user && (
+              <Link to="/register">
+                <button className="ms-4 btn btn-info">Register</button>
+              </Link>
+            )}
           </div>
         </Navbar.Collapse>
       </Container>

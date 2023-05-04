@@ -21,7 +21,6 @@ const AuthProviders = ({ children }) => {
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
-    setLoading(true);
   };
 
   const createUser = (email, password) => {
@@ -41,7 +40,6 @@ const AuthProviders = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
-      console.log("loged user inside", loggedUser);
       setUser(loggedUser);
       setLoading(false);
     });
