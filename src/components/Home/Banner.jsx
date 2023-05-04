@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import bannerImg from "../../assets/banner.webp";
 import BannerCard from "./BannerCard";
+import { Spinner } from "react-bootstrap";
 
 const Banner = () => {
   const [chefs, setChef] = useState([]);
   const [likeCount, setLikeCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const handleLikeClick = () => {
     setLikeCount(likeCount + 1);
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/allData")
-      .then((response) => response.json())
-      .then((data) => setChef(data));
+    setTimeout(() => {
+      fetch("http://localhost:5000/allData")
+        .then((response) => response.json())
+        .then((data) => setChef(data));
+      setLoading(false);
+    }, 2000);
   }, []);
 
   return (
@@ -46,16 +51,27 @@ const Banner = () => {
         </button>
       </div>
 
-      <div className="   gap-4 ">
+      <div className="  gap-4 ">
         <h2 className="text-center text-white my-4 bg-info rounded p-3">
           The Famous Chef is Here
         </h2>
-        {chefs.map((chef) => (
-          <BannerCard chef={chef}></BannerCard>
-        ))}
+        {loading ? (
+          <Spinner
+            className="m-5"
+            variant="info"
+            animation="border"
+            role="status"
+          >
+            <span className="sr-only ">Loading...</span>
+          </Spinner>
+        ) : (
+          <div>
+            {chefs.map((chef) => (
+              <BannerCard chef={chef}></BannerCard>
+            ))}
+          </div>
+        )}
       </div>
-
-      <div className="text-center m-3 mt-5 "></div>
     </div>
   );
 };

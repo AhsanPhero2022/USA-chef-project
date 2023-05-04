@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const BannerCard = ({ chef }) => {
   const { id, imageUrl, name, likes, experienceYears, NumbersRecipes } = chef;
@@ -7,7 +9,12 @@ const BannerCard = ({ chef }) => {
     <div className="m-4">
       <div className=" mx-5 my-12  w-full card  h-96 bg-base-100 shadow-xl">
         <figure className="w-32 p-5">
-          <img className="rounded img-fluid" src={imageUrl} alt="Shoes" />
+          <LazyLoadImage
+            effect="blur"
+            className="rounded img-fluid"
+            src={imageUrl}
+            alt="Shoes"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
