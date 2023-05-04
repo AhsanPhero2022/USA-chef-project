@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
-  const { signIn, googleLogin } = useContext(AuthContext);
+  const { signIn, googleLogin, gitHubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -27,6 +27,13 @@ const Login = () => {
       });
   };
 
+  const handleGitLogin = () => {
+    gitHubLogin().then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      navigate("/");
+    });
+  };
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
@@ -89,7 +96,9 @@ const Login = () => {
             <button onClick={handleGoogleLogin} className="btn btn-warning">
               Google Sign-in
             </button>
-            <button className="btn btn-warning ms-3">GitHub Sign-in</button>
+            <button onClick={handleGitLogin} className="btn btn-warning ms-3">
+              GitHub Sign-in
+            </button>
           </div>
         </Col>
       </Row>
