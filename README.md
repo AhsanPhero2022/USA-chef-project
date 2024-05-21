@@ -14,7 +14,6 @@ This project used lazy loader for user friendly.
 ## Uses
 
 ```
-Js
 ReactJs
 ReactBootstrap
 Design base Random
@@ -30,14 +29,14 @@ some conditional message ('toast')
 mostly used arrow function.
 ```
 
-## user Friendly
+## User Friendly
 
 ```
 This web site is user friendly. user can be perfectly signup and signin with multiple method.
 ```
 
-## Site Link
+## Live Site Link
 
 ```
-Live Site Link: 'https://assignment-10-d44c0.web.app/'
+Live Site Link: 'https://assignment-10-d44c0.web.app'
 ```
