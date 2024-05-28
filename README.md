@@ -8,7 +8,8 @@ ReactJs is a JavaScript Library. It's very first and good productional library f
 ## Lazy Loader
 
 ```
-This project used lazy loader for user friendly.
+This project used lazy loader for images showing smoothlym, user friendly.
+
 ```
 
 ## Uses
